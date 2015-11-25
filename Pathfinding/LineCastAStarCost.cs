@@ -12,9 +12,6 @@ public class LineCastAStarCost : AStarCost {
 
 	public override float getCost(int toX, int toY, int fromX, int fromY)
 	{
-	Vector2 start = new Vector2(fromX, fromY);
-	Vector2 end = new Vector2(toX, toY);
-	RaycastHit2D hit = Physics2D.Linecast(start, end, _blockingLayer);
 
 		if (toX != fromX && toY != fromY)
 		{

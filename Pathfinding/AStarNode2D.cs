@@ -44,18 +44,15 @@ public class AStarNode2D : AStarNode {
 			AStarNode2D node2d = (AStarNode2D) goalNode;
 			float xd = _x - node2d.x;
 			float yd = _y - node2d.y;
-			if (allowDiagonal)
+			if (allowDiagonal) { 
 			
 				//"Euclidean distance" - Used when search can move at any angle.
 				return Mathf.Sqrt((xd*xd) + (yd*yd));
 			}
-			else
-			{
-				// "Manhattan Distance" - Used when search can only move orthogonally.
-				return Mathf.Abs(xd) + Mathf.Abs(yd); 
-			}
-				// "Diagonal Distance" - Used when the search can move in 8 directions.
-				// return Mathf.Max(Mathf.Abs(xd),Mathf.Abs(yd))*10;
+			// "Manhattan Distance" - Used when search can only move orthogonally.
+			return Mathf.Abs(xd) + Mathf.Abs(yd); 
+			// "Diagonal Distance" - Used when the search can move in 8 directions.
+			// return Mathf.Max(Mathf.Abs(xd),Mathf.Abs(yd))*10;
 		} else {
 			Debug.LogError("No goal node");
 			return 0;
