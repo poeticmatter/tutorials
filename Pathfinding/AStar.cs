@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Tanis.Collections;
 
-//Modified by www.materialpoetics.com
+//Modified by www.timeshapers.com
 //Original version of http://www.codeproject.com/Articles/5758/Path-finding-in-C
 
 public sealed class AStar {
@@ -19,11 +19,15 @@ public sealed class AStar {
 			return _solution;
 		}
 	}
+
+	private AStarNode2D startNode;
 	
-	public AStar ()	{
+	public AStar (AStarCost aStarCost, int fromX, int fromY, int toX, int toY)	{
 		openList = new Heap();
 		closedList = new Heap();
 		_solution = new List<AStarNode>();
+		AStarNode2D goalNode = new AStarNode2D(aStarCost, 0, toX, toY);
+		startNode = new AStarNode2D(aStarCost, 0, fromX, fromY, goalNode);
 	}
 	
 	private void printNodeList (List<AStarNode> nodes) {
@@ -33,8 +37,7 @@ public sealed class AStar {
 		}
 		Debug.Log("=====");
 	}
-	
-	public void findPath (AStarNode startNode, AStarNode goalNode) {
+	public void findPath () {
 		openList.Add (startNode);
 		while (openList.Count > 0) {
 			AStarNode current = (AStarNode)openList.Pop();
